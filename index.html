@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ระบบประเมินโปรเจกต์นักเรียน</title>
+<title>Digital Project Evaluation | ระบบประเมินโปรเจกต์นักเรียน</title>
 <style>
 :root {
   --bg: #f4f5f9; --card: #fff; --text: #1a1a2e; --muted: #7a7a90;
@@ -58,6 +58,106 @@ th { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: upp
 .ev-item { display: grid; grid-template-columns: 1fr 120px 36px; gap: 8px; align-items: center; }
 .ev-item span { font-size: 14px; font-weight: 500; }
 .ev-item .pw  { font-size: 12px; color: var(--muted); font-family: monospace; background: var(--bg); padding: 4px 8px; border-radius: 6px; }
+
+/* ===== IT / DIGITAL CAMPUS DESIGN ===== */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+html { scroll-behavior: smooth; }
+body {
+  position: relative; overflow-x: hidden;
+  background:
+    radial-gradient(circle at 8% 5%, rgba(6,182,212,.12), transparent 26rem),
+    radial-gradient(circle at 94% 12%, rgba(37,99,235,.11), transparent 28rem),
+    linear-gradient(180deg, #f7faff 0%, #edf3fa 100%);
+  color: #14243b;
+  font-family: 'Prompt', 'Noto Sans Thai', 'Segoe UI', sans-serif;
+}
+body::before {
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
+  background-image:linear-gradient(rgba(37,99,235,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.08) 1px,transparent 1px);
+  background-size:34px 34px;
+  mask-image:linear-gradient(to bottom,black,transparent 75%);
+}
+#app { width:min(100% - 32px,1040px); max-width:1040px; margin:0 auto; padding:30px 0 70px; }
+h2 { color:#102a4c; font-size:clamp(20px,3vw,27px); line-height:1.4; letter-spacing:-.35px; }
+.sub { color:#718096; font-size:13px; line-height:1.65; }
+.card {
+  background:rgba(255,255,255,.95); border:1px solid #dce6f2; border-radius:19px;
+  padding:22px; margin-bottom:16px; box-shadow:0 10px 30px rgba(26,55,92,.06);
+  backdrop-filter:blur(12px); transition:box-shadow .2s,border-color .2s;
+}
+.card:focus-within { border-color:#9bc3f6; box-shadow:0 14px 34px rgba(37,99,235,.09); }
+.field { margin-bottom:17px; }
+label { color:#52647c; font-size:12px; font-weight:600; text-transform:none; letter-spacing:.2px; }
+input[type=text],input[type=password],input[type=number],select {
+  min-height:44px; padding:11px 14px; border:1.5px solid #d9e4f0; border-radius:12px;
+  background:#f8fbff; color:#14243b; font-size:14px; font-family:inherit;
+  transition:border-color .18s,box-shadow .18s,background .18s;
+}
+input::placeholder { color:#9aa9bb; }
+input:focus,select:focus { border-color:#3984ee; background:#fff; box-shadow:0 0 0 4px rgba(37,99,235,.10); }
+.btn { min-height:42px; padding:10px 17px; border-radius:12px; font-family:inherit; font-weight:600; transition:transform .16s,box-shadow .16s; }
+.btn:hover:not(:disabled) { opacity:1; transform:translateY(-1px); }
+.btn-primary { color:#fff; background:linear-gradient(110deg,#2563eb,#0e9fca); box-shadow:0 7px 17px rgba(37,99,235,.20); }
+.btn-outline { color:#2563eb; background:#f4f8ff; border:1.5px solid #c9dcf7; }
+.btn-danger { background:#fff7f7; border-color:#fecaca; }
+.btn-good { background:linear-gradient(110deg,#059669,#0d9488); color:#fff; box-shadow:0 7px 17px rgba(5,150,105,.18); }
+.tabs { gap:8px; padding:7px; border:1px solid #dce7f4; border-radius:15px; background:rgba(255,255,255,.8); box-shadow:0 5px 18px rgba(30,64,110,.04); }
+.tab { padding:10px 16px; border:1px solid transparent; border-radius:10px; color:#60728a; font-family:inherit; font-weight:500; transition:all .18s; }
+.tab:hover { background:#eff6ff; color:#1d4ed8; }
+.tab.on { color:#fff; border-color:transparent; background:linear-gradient(110deg,#1d4ed8,#0891b2); box-shadow:0 5px 13px rgba(37,99,235,.18); }
+.badge { padding:4px 10px; font-size:11px; }
+.badge-admin { background:#fff4d6; color:#9a6200; }
+.badge-ev { background:#e5f2ff; color:#1d5fbd; }
+.topbar {
+  align-items:center; gap:14px; padding:21px 23px; margin-bottom:20px;
+  border:1px solid rgba(190,211,236,.55); border-radius:20px;
+  background:radial-gradient(circle at 92% 10%,rgba(34,211,238,.20),transparent 14rem),linear-gradient(115deg,#10243f,#173b65 65%,#14516b);
+  box-shadow:0 15px 35px rgba(16,36,63,.17); color:#fff;
+}
+.topbar h2 { color:#fff; }
+.topbar .sub { color:#c5d8ee; }
+.topbar .btn-outline { color:#e8f3ff; border-color:rgba(210,231,255,.45); background:rgba(255,255,255,.08); }
+.list-row { gap:12px; padding:13px 2px; }
+.dlnk,.lnk { font-weight:600; }
+.note { color:#42617f; background:linear-gradient(110deg,#edf6ff,#effcff); border:1px solid #d7eafa; line-height:1.65; }
+.err { border-radius:12px; line-height:1.6; }
+.sep { border-top-color:#e4ebf4; }
+table { font-size:13px; }
+th,td { padding:11px 10px; }
+th { color:#60738b; background:#f5f8fc; font-size:11px; white-space:nowrap; }
+td { color:#34465d; }
+.overflow { border:1px solid #e4ebf4; border-radius:12px; }
+.overflow table { min-width:520px; }
+.score-row { padding:10px 12px; margin:0 0 9px; border:1px solid #e7eef7; border-radius:12px; background:#fbfdff; }
+.score-row:focus-within { border-color:#9bc3f6; background:#f4f9ff; }
+.score-row input { text-align:center; font-weight:600; }
+.tag-max { color:#8292a7; font-size:12px; }
+.ev-item { gap:9px; }
+.ev-item .pw { background:#f1f5fa; color:#64748b; }
+#app > .card[style*="max-width"] {
+  margin-top:clamp(22px,7vh,72px)!important; border-top:4px solid #1685d5;
+  box-shadow:0 22px 55px rgba(23,55,96,.11);
+}
+#app > .card[style*="max-width"]::before {
+  content:"◈  DIGITAL PROJECT EVALUATION"; display:inline-flex; margin-bottom:15px;
+  padding:6px 10px; border-radius:7px; color:#1761b5; background:#eaf4ff;
+  font:600 10px/1.4 'Segoe UI',sans-serif; letter-spacing:1.1px;
+}
+button:focus-visible,input:focus-visible,select:focus-visible { outline:3px solid rgba(6,182,212,.25); outline-offset:2px; }
+@media(max-width:640px) {
+  #app { width:min(100% - 22px,1040px); padding:16px 0 48px; }
+  .card { padding:17px; border-radius:16px; }
+  .topbar { padding:17px; align-items:flex-start; }
+  .topbar h2 { font-size:19px; }
+  .topbar .btn { padding:9px 11px; font-size:12px; }
+  .tabs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .tab { padding:10px 8px; font-size:12px; }
+  .row { align-items:stretch; }
+  .score-row { grid-template-columns:minmax(0,1fr) 88px; gap:8px; padding:9px; font-size:13px; }
+  .ev-item { grid-template-columns:minmax(0,1fr) 105px 22px; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; } }
+
 </style>
 </head>
 <body>
