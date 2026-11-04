@@ -1054,8 +1054,76 @@ window.doDelCrit = async id => {
 };
 
 /* ── ผู้ประเมิน ── */
+function adminEvaluators(d) {
+  const evaluators = d.evaluators || [];
 
+  const rows = evaluators.map(e =>
+    `<div class="list-row">
+      <div>
+        <strong>${esc(e.name)}</strong>
+        <span class="badge badge-ev">ผู้ประเมิน</span>
 
+        <div class="muted" style="font-size:12px;margin-top:4px">
+          ชื่อเล่น: ${esc(e.nickname || 'ยังไม่ได้ตั้ง')}
+        </div>
+
+        <button
+          class="btn btn-outline"
+          style="margin-top:8px;font-size:12px;padding:5px 10px"
+          onclick="doEditEvNickname('${e.id}')"
+        >
+          ✏️ แก้ชื่อเล่น
+        </button>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <span class="pw">${esc(e.password)}</span>
+        <span class="dlnk" onclick="doDelEv('${e.id}')">ลบ</span>
+      </div>
+    </div>`
+  ).join('') || `
+    <p class="muted" style="font-size:13px;padding:6px 0">
+      ยังไม่มีผู้ประเมิน
+    </p>`;
+
+  const canAdd = evaluators.length < 4;
+
+  return `<div class="card">
+    <p class="muted" style="font-size:13px;margin-bottom:14px">
+      ผู้ประเมิน ${evaluators.length}/4 คน
+    </p>
+
+    ${rows}
+
+    ${canAdd ? `
+      <hr class="sep">
+      <label>เพิ่มบัญชีผู้ประเมิน</label>
+
+      <div class="row">
+        <input id="evNewName" type="text"
+          placeholder="ชื่อผู้ใช้" style="flex:2">
+
+        <input id="evNewPw" type="password"
+          placeholder="รหัสผ่าน"
+          style="flex:1;min-width:100px">
+
+        <button class="btn btn-outline" onclick="doAddEv()">
+          + เพิ่ม
+        </button>
+      </div>
+    ` : `
+      <p class="muted" style="margin-top:12px;font-size:13px">
+        ผู้ประเมินเต็มแล้ว (สูงสุด 4 คน)
+      </p>
+    `}
+
+    <div class="note" style="margin-top:14px">
+      💡 <b>วิธีใช้งาน:</b>
+      แอดมินแจกลิงก์เว็บไซต์ ชื่อผู้ใช้ และรหัสผ่านให้ผู้ประเมิน
+      เมื่อเข้าใช้งานครั้งแรก ผู้ประเมินจะต้องตั้งชื่อเล่นของตนเอง
+    </div>
+  </div>`;
+}
 window.editEvUsername = (id) => {
   const view = document.getElementById(`evUsernameView_${id}`);
   const edit = document.getElementById(`evUsernameEdit_${id}`);
