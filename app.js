@@ -1959,7 +1959,7 @@ async function drawEvaluator() {
     (grp.members || []).flatMap(member =>
       d.criteria.map(c => {
         const key = personScoreKey(
-          session.evId, grp.id, member, c.id
+          session.evId, grp.id, member.name, c.id
         );
 
         const val = d.scores[key];
@@ -1968,7 +1968,11 @@ async function drawEvaluator() {
 
         return `<tr>
           <td>${esc(grp.name)}</td>
-          <td>${esc(member)}</td>
+          <td>
+            ${esc(member.name)}<br>
+            เลขประจำตัว: ${esc(member.studentId || '-')}<br>
+            ${esc(member.level || '-')}
+          </td>
           <td>${esc(c.name)}</td>
           <td>${val} / ${c.max}</td>
         </tr>`;
